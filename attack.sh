@@ -1,10 +1,8 @@
-#!/bin/bash
-
-## Abductive
+mode=$1
 
 CUDA_VISIBLE_DEVICES=3 python3 cold_decoding.py  \
 	--seed 12 \
-	--mode paraphrase \
+	--mode $mode \
 	--pretrained_model Llama-2-7b-chat-hf \
 	--init-temp 1 \
     --length 20 \
