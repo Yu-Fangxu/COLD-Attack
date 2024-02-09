@@ -11,28 +11,24 @@ Xingang Guo, Fangxu Yu, Huan Zhang, Lianhui Qin, Bin Hu
 pip install -r requirements.txt
 ```
 
-**2) Download this Github**
+**2) Download this GitHub**
 ```
-git clone https://github.com/qkaren/COLD_decoding.git
+git clone https://github.com/Yu-Fangxu/COLD-Attack.git
 ```
 
-**3) Run Command for COLD Decoding**
+**3) Run Command for COLD-Attack**
 
-* CommonGen
+* Suffix Attack
 ```
 sh commongen.sh
 ```
 
-* Abductive Reasoning 
+* Paraphrasing Attack 
 ```
 sh abductive.sh
 ```
 
-* Counterfactual Reasoning
+* Attack with Control
 ```
 sh counterfactual.sh
 ```
-
-**4) Rank the generation**
-
-will add soon
