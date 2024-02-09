@@ -17,17 +17,17 @@ pip install -r requirements.txt
 
 **3) Run Command for COLD-Attack**
 
-* Suffix Attack
+* Fluent suffix attack
 ```
 bash attack.sh "suffix"
 ```
 
-* Paraphrasing Attack 
+* Paraphrase attack
 ```
 bash attack.sh "paraphrase"
 ```
 
-* Attack with Control
+* Left-right-coherence control
 ```
 bash attack.sh "control"
 ```
