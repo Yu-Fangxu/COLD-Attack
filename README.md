@@ -20,15 +20,15 @@ git clone https://github.com/Yu-Fangxu/COLD-Attack.git
 
 * Suffix Attack
 ```
-sh commongen.sh
+bash attack.sh "suffix"
 ```
 
 * Paraphrasing Attack 
 ```
-sh abductive.sh
+bash attack.sh "paraphrase"
 ```
 
 * Attack with Control
 ```
-sh counterfactual.sh
+bash attack.sh "control"
 ```
