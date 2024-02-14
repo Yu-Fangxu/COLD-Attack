@@ -2,7 +2,7 @@
 
 This is the code for the following paper: 
 
-[COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability] (https://arxiv.org/pdf/2202.11705.pdf) \
+[COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability] ([https://arxiv.org/pdf/2202.11705.pdf](https://arxiv.org/abs/2402.08679)) \
 Xingang Guo, Fangxu Yu, Huan Zhang, Lianhui Qin, Bin Hu
 
 **1) Download this GitHub**
