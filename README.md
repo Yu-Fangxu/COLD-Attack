@@ -31,3 +31,16 @@ bash attack.sh "paraphrase"
 ```
 bash attack.sh "control"
 ```
+
+
+---
+
+<br> **If you find our repository helpful to your research, please consider citing:** <br>
+```
+@article{guo2024cold,
+  title={COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability},
+  author={Guo, Xingang and Yu, Fangxu and Zhang, Huan and Qin, Lianhui and Hu, Bin},
+  journal={arXiv preprint arXiv:2402.08679},
+  year={2024}
+}
+```
