@@ -10,7 +10,11 @@ Xingang Guo*, Fangxu Yu*, Huan Zhang, Lianhui Qin, Bin Hu, "[COLD-Attack: Jailbr
 
 ## COLD-Attack
 
+![alt text](./imgs/COLD_attack_diagram.pdf)
 
+![plot](./imgs/COLD_attack_diagram.pdf)
+
+## Attack Setting 
 
 ## Code
 **1) Download this GitHub**
