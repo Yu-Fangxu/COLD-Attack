@@ -8,6 +8,11 @@ We study the **controllable** jailbreaks on large language models (LLMs). Specif
 More details can be found in our paper:
 Xingang Guo*, Fangxu Yu*, Huan Zhang, Lianhui Qin, Bin Hu, "[COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability](https://arxiv.org/abs/2402.08679)" (* Equal contribution)
 
+## COLD-Attack
+
+
+
+## Code
 **1) Download this GitHub**
 ```
 git clone https://github.com/Yu-Fangxu/COLD-Attack.git
