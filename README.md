@@ -6,7 +6,7 @@ We study the **controllable** jailbreaks on large language models (LLMs). Specif
 3. Attack with left-right-coherence (inserting stealthy attacks in context with left-right-coherence).
 
 More details can be found in our paper:
-[Xingang Guo*, Fangxu Yu*, Huan Zhang, Lianhui Qin, Bin Hu, "COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability" (* Equal contribution)] ([https://arxiv.org/pdf/2202.11705.pdf](https://arxiv.org/abs/2402.08679)) \
+Xingang Guo*, Fangxu Yu*, Huan Zhang, Lianhui Qin, Bin Hu, "[COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability](https://arxiv.org/abs/2402.08679)" (* Equal contribution)[https://arxiv.org/pdf/2202.11705.pdf](https://arxiv.org/abs/2402.08679) 
 
 **1) Download this GitHub**
 ```
