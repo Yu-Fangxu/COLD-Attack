@@ -66,8 +66,6 @@ bash attack.sh "control"
 
 ### Left-right-coherence control
 
-We attack
-
 | Models                  | ASR ↑ | ASR-G ↑ | Succ ↑ | PPL ↓ |
 |-------------------------|-------|---------|--------|-------|
 | **Sentiment Constraint**|       |         |        |       |
