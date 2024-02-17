@@ -18,10 +18,12 @@ As illustrated in the above diagram, our COLD-Attack framework includes three ma
 3. **Decoding process**: leverage an LLM-guided decoding process to covert the continuous logit $\tilde{\mathbf{y}}^N$ into discrete text attacks $\mathbf{y}$. 
 
 ## Jailbreaking Performance
-We evaluate the performance of COLD-Attack on four popular white-box LLMs: Vicuna-7b-v1.5 (Vicuna), Llama-2-7b-Chat-hf (Llama2), Guanaco-7b (Guanaco), and Mistral-7b-Instruct-v0.2. In addition, we use the following three main evaluation metrics:
-1. Attack Successful Rate (**ASR**): the percentage of instructions that elicit corresponding harmful outputs using sub-string matching.
+We evaluate the performance of COLD-Attack on four popular white-box LLMs: Vicuna-7b-v1.5 (Vicuna), Llama-2-7b-Chat-hf (Llama2), Guanaco-7b (Guanaco), and Mistral-7b-Instruct-v0.2 (Mistral). In addition, we use the following three main evaluation metrics:
+1. Attack Successful Rate (**ASR**): the percentage of instructions that elicit corresponding harmful outputs using sub-string matching method.
 2. GPT-4 based ASR (**ASR-G**): We develop a prompt template and utilize GPT-4 to assess whether a response accurately fulfills the malicious instruction. Based on our observations, ASR-G has shown higher correlation with human annotations, providing a more reliable measure of attack effectiveness.
 3. Perplexity (**PPL**): We use PPL to evaluate the fluency of the generated prompts and use Vicuna-7b to do the PPL calculation.
+
+To ensure the generated adversarial prompts meet specific criteria, we apply controls over various features, including sentiment and vocabulary. We evaluate how well these controls work using a metric called **Succ**, which represents the percentage of samples that successfully adhere to our set requirements. Additionally, a range of NLP-related evaluation metrics including **BERTScore**, **BLEU**, and **ROUGE** are applied to evaluate the quality of generated controllable attacks.
 
 ### Fluent suffix attack
 
