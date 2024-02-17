@@ -46,4 +46,12 @@ bash attack.sh "control"
   journal={arXiv preprint arXiv:2402.08679},
   year={2024}
 }
+@article{qin2022cold,
+  title={Cold decoding: Energy-based constrained text generation with langevin dynamics},
+  author={Qin, Lianhui and Welleck, Sean and Khashabi, Daniel and Choi, Yejin},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={9538--9551},
+  year={2022}
+}
 ```
