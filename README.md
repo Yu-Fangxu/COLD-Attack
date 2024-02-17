@@ -1,9 +1,12 @@
-# Code for "COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability"
+# COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability
 
-This is the code for the following paper: 
+We study the **controllable** jailbreaks on large language models (LLMs). Specifically, we focus on how to enforce control on LLM attacks. In this work, we formally formulate the controllable attack generation problem, and build a novel connection between this problem and controllable text generation, a well-explored topic of natural language processing. Based on this connection, we adapt the Energy-based Constrained Decoding with Langevin Dynamics (COLD), a state-of-the-art, highly efficient algorithm in controllable text generation, and introduce the COLD-Attack framework which unifies and automates the search of adversarial LLM attacks under a variety of control requirements such as fluency, stealthiness, sentiment, and left-right-coherence. The controllability enabled by COLD-Attack leads to diverse new jailbreak scenarios including:
+1. Fluent suffix attacks (standard attack setting which append the adversarial prompt to the original malicious user query).
+2. Paraphrase attack with and without sentiment steering (revising a user query adversarially with minimal paraphrasing).
+3. Attack with left-right-coherence (inserting stealthy attacks in context with left-right-coherence).
 
-[COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability] ([https://arxiv.org/pdf/2202.11705.pdf](https://arxiv.org/abs/2402.08679)) \
-Xingang Guo, Fangxu Yu, Huan Zhang, Lianhui Qin, Bin Hu
+More details can be found in our paper:
+[Xingang Guo*, Fangxu Yu*, Huan Zhang, Lianhui Qin, Bin Hu, "COLD-Attack: Jailbreaking LLMs with Stealthiness and Controllability" (* Equal contribution)] ([https://arxiv.org/pdf/2202.11705.pdf](https://arxiv.org/abs/2402.08679)) \
 
 **1) Download this GitHub**
 ```
