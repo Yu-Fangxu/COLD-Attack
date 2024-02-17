@@ -10,11 +10,17 @@ Xingang Guo*, Fangxu Yu*, Huan Zhang, Lianhui Qin, Bin Hu, "[COLD-Attack: Jailbr
 
 ## COLD-Attack
 
-![alt text](./imgs/COLD_attack_diagram.png)
-
 ![plot](./imgs/COLD_attack_diagram.png)
 
-## Attack Setting 
+
+## Attack Settings
+
+![plot](./imgs/attack_settings.png)
+
+Here are some examples generated:
+
+![plot](./imgs/selected_samples_2.png)
+
 
 ## Code
 **1) Download this GitHub**
