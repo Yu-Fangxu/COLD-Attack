@@ -43,7 +43,55 @@ bash attack.sh "paraphrase"
 ```
 bash attack.sh "control"
 ```
+---
+## Jailbreaking Performance
 
+### Fluent Suffix Attack
+
+| Models   | ASR ↑  | ASR-G ↑ | PPL ↓ |
+|----------|--------|---------|-------|
+| Vicuna   | 100.0  | 86.00   | 32.96 |
+| Guanaco  | 96.00  | 84.00   | 30.55 |
+| Mistral  | 92.00  | 90.00   | 26.24 |
+| Llama2   | 92.00  | 66.00   | 24.83 |
+
+### Paraphrase attack 
+
+| Models   | ASR ↑  | ASR-G ↑ | PPL ↓ | BLEU ↑ | ROUGE ↑ | BERTScore ↑ |
+|----------|--------|---------|-------|--------|---------|--------------|
+| Vicuna   | 96.00  | 80.00   | 31.11 | 0.52   | 0.57    | 0.72         |
+| Guanaco  | 98.00  | 78.00   | 29.23 | 0.47   | 0.55    | 0.74         |
+| Mistral  | 98.00  | 90.00   | 37.21 | 0.41   | 0.55    | 0.72         |
+| Llama2   | 86.00  | 74.00   | 39.26 | 0.60   | 0.54    | 0.71         |
+
+
+See our [SA-PPO repository](https://github.com/huanzhang12/SA_PPO) for more details.
+
+### Left-right-coherence control
+
+
+| Models                  | ASR ↑ | ASR-G ↑ | Succ ↑ | PPL ↓ |
+|-------------------------|-------|---------|--------|-------|
+| **Sentiment Constraint**|       |         |        |       |
+| Vicuna                  | 90.00 | 96.00   | 84.00  | 66.48 |
+| Guanaco                 | 96.00 | 94.00   | 82.00  | 74.05 |
+| Mistral                 | 92.00 | 96.00   | 92.00  | 67.61 |
+| Llama2                  | 80.00 | 88.00   | 64.00  | 59.53 |
+| **Lexical Constraint**  |       |         |        |       |
+| Vicuna                  | 92.00 | 100.00  | 82.00  | 76.69 |
+| Guanaco                 | 92.00 | 96.00   | 82.00  | 99.03 |
+| Mistral                 | 94.00 | 84.00   | 92.00  | 96.06 |
+| Llama2                  | 88.00 | 86.00   | 68.00  | 68.23 |
+| **Format Constraint**   |       |         |        |       |
+| Vicuna                  | 92.00 | 94.00   | 88.00  | 67.63 |
+| Guanaco                 | 92.00 | 94.00   | 72.00  | 72.97 |
+| Mistral                 | 94.00 | 86.00   | 84.00  | 44.56 |
+| Llama2                  | 80.00 | 86.00   | 72.00  | 57.70 |
+| **Style Constraint**    |       |         |        |       |
+| Vicuna                  | 94.00 | 96.00   | 80.00  | 81.54 |
+| Guanaco                 | 94.00 | 92.00   | 70.00  | 75.25 |
+| Mistral                 | 92.00 | 90.00   | 86.00  | 54.50 |
+| Llama2                  | 80.00 | 80.00   | 68.00  | 58.93 |
 
 ---
 
