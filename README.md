@@ -43,10 +43,10 @@ bash attack.sh "paraphrase"
 ```
 bash attack.sh "control"
 ```
----
+
 ## Jailbreaking Performance
 
-### Fluent Suffix Attack
+### Fluent suffix attack
 
 | Models   | ASR ↑  | ASR-G ↑ | PPL ↓ |
 |----------|--------|---------|-------|
@@ -64,11 +64,9 @@ bash attack.sh "control"
 | Mistral  | 98.00  | 90.00   | 37.21 | 0.41   | 0.55    | 0.72         |
 | Llama2   | 86.00  | 74.00   | 39.26 | 0.60   | 0.54    | 0.71         |
 
-
-See our [SA-PPO repository](https://github.com/huanzhang12/SA_PPO) for more details.
-
 ### Left-right-coherence control
 
+We attack
 
 | Models                  | ASR ↑ | ASR-G ↑ | Succ ↑ | PPL ↓ |
 |-------------------------|-------|---------|--------|-------|
@@ -93,7 +91,6 @@ See our [SA-PPO repository](https://github.com/huanzhang12/SA_PPO) for more deta
 | Mistral                 | 92.00 | 90.00   | 86.00  | 54.50 |
 | Llama2                  | 80.00 | 80.00   | 68.00  | 58.93 |
 
----
 
 <br> **If you find our repository helpful to your research, please consider citing:** <br>
 ```
