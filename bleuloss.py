@@ -44,7 +44,7 @@ def batch_log_bleulosscnn_ae(decoder_outputs, target_idx, ngram_list, trans_len=
         if ngram > output_len:
             continue
         eye_filter = torch.eye(ngram).view([1, 1, ngram, ngram]).cuda()
-        term = nn.functional.conv2d(out, eye_filter)/ngram
+        term = nn.functional.conv2d(out, eye_filter.to(out))/ngram
         if ngram < decoder_outputs.size()[1]:
             term = term.squeeze(1)
             gum_tmp = F.gumbel_softmax(term, tau=1, dim=1)
