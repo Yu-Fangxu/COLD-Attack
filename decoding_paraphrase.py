@@ -53,115 +53,6 @@ def decode(model, tokenizer, classifer, device, x="", z="", constraints=None, ar
               'fair-minded', 'impartial', 'equitable',
               'reliable', 'trustable', 'faithful', 'invalid','safe', 'not', "can't", "but", "against","0", "1", "2",
               "3", "4", "5", "6", "7", "8", "9"]
-    positive_adjectives = [
-    "Joyful",
-    "Loving",
-    "Happy",
-    "Blissful",
-    "Euphoric",
-    "Grateful",
-    "Hopeful",
-    "Excited",
-    "Serene",
-    "Delightful",
-    "Merry",
-    "Amazed",
-    "Content",
-    "Harmonious",
-    "Peaceful",
-    "Cheerful",
-    "Enthusiastic",
-    "Optimistic",
-    "Ecstatic",
-    "Jubilant",
-    "Wonderful",
-    "Pleasant",
-    "Kind",
-    "Generous",
-    "Admiring",
-    "Compassionate",
-    "Appreciative",
-    "Affectionate",
-    "Sweet",
-    "Radiant",
-    "Thrilled",
-    "Marvelous",
-    "Sunny",
-    "Successful",
-    "Victorious",
-    "Prosperous",
-    "Abundant",
-    "Triumphant",
-    "Good",
-    "Friendly",
-    "Forgiving",
-    "Satisfied",
-    "Grateful",
-    "Tender",
-    "Zealous",
-    "Confident",
-    "Serendipitous",
-    "Fortunate",
-    "Charismatic",
-    "Excellent"]
-
-    
-
-    negative_adjectives = [
-    "Sad",
-    "Angry",
-    "Depressed",
-    "Anxious",
-    "Lonely",
-    "Frustrated",
-    "Disappointed",
-    "Miserable",
-    "Dismal",
-    "Gloomy",
-    "Upset",
-    "Desperate",
-    "Worried",
-    "Unhappy",
-    "Pessimistic",
-    "Irritated",
-    "Distressed",
-    "Hurt",
-    "Annoyed",
-    "Bitter",
-    "Resentful",
-    "Sorrowful",
-    "Regretful",
-    "Tense",
-    "Stressed",
-    "Fearful",
-    "Grief-stricken",
-    "Dreary",
-    "Hateful",
-    "Disgusted",
-    "Dreadful",
-    "Horrible",
-    "Terrible",
-    "Unpleasant",
-    "Displeased",
-    "Grim",
-    "Nervous",
-    "Agitated",
-    "Apprehensive",
-    "Hostile",
-    "Melancholic",
-    "Dour",
-    "Glum",
-    "Unsatisfied",
-    "Vexed",
-    "Repulsive",
-    "Anxious",
-    "Turbulent",
-    "Troubled"]
-    sampled_list_pos = ["happy", "excited", "joyful", "loving", "thrilled"]
-    sampled_list_neg = ["hateful", "stressed", "unhappy", "anxious", "depressed"]
-    # sampled_list = random.sample(positive_adjectives, 8)
-    sampled_list = sampled_list_neg
-    sampled_list = [word.lower() for word in sampled_list]
 
     lowercase_words = [word.upper() for word in words]
 
@@ -200,11 +91,6 @@ def decode(model, tokenizer, classifer, device, x="", z="", constraints=None, ar
     # x_mask: [batch_size, vocab_size]
     x_words = word_tokenize(x)  # delete the ". " token we appended before
     x_nonstop_words = [w.lower() for w in x_words if w.lower() not in stop_words and w.isalnum()]
-    for adj in sampled_list:
-        # Choose a random index in list2 to insert
-        insert_index = random.randint(0, len(x_nonstop_words))
-        x_nonstop_words.insert(insert_index, adj)
-
     x_nonstop_words = ' '.join(x_nonstop_words)
     print('|' + x_nonstop_words + '|')
     x_nonstop_ = tokenizer.encode(x_nonstop_words.strip())[1:]
@@ -352,7 +238,6 @@ def decode(model, tokenizer, classifer, device, x="", z="", constraints=None, ar
                 print(
                     "%d, loss: %.4f, c_loss_1: %.4f, c_loss_2: %.4f, c_loss_3: %.4f, lr: %.4f, |%s|" % (
                         iter + 1, loss.item(), c_loss_1[bi].item(), c_loss_2[bi].item(), c_loss_3[bi].item(), last_lr, text_post[bi]))
-                print(f"\ndesited words are {sampled_list}\n")
         
         ## noise
         if iter < args.num_iters - 1:
