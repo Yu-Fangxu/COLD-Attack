@@ -54,7 +54,7 @@ def options():
     parser.add_argument("--abductive-filterx", action="store_true", help="filter out keywords included in x")
     parser.add_argument("--lr-nll-portion", type=float, default=1)
     parser.add_argument("--prefix-length", type=int, default=0, help="length of prefix.")
-    parser.add_argument("--counterfactual-max-ngram", type=int, default=5)
+    parser.add_argument("--counterfactual-max-ngram", type=int, default=3)
     parser.add_argument("--no-loss-rerank", action="store_true", help="")
     parser.add_argument("--use-sysprompt", action="store_true", help="")
     # temperature
