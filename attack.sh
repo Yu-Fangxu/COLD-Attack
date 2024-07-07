@@ -10,7 +10,7 @@ CUDA_VISIBLE_DEVICES=3 python3 cold_decoding.py  \
 	--num-iters 2000 \
 	--min-iters 0 \
 	--goal-weight 100 \
-    --rej-weight 0.1 \
+    --rej-weight 100 \
 	--stepsize 0.1 \
 	--noise-iters 1 \
 	--win-anneal-iters 1000 \
