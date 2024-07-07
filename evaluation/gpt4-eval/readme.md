@@ -9,7 +9,7 @@ Then the data would be transformed to json format.
 
 ### Run the GPT-4 evaluation
 ```
-bash run_attack.eval.sh
+bash run_attack.eval.sh [Your data path] [Your output path]
 ```
 Note that you need to set the OPENAI_API_KEY with yours
 
