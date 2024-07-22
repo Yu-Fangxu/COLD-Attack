@@ -208,7 +208,6 @@ def decode(model, tokenizer, device, x="", z="", key_word="", constraints=None, 
     else:
         x_model_outputs = model(x_t[:, :-1], use_cache=True)
         x_model_past = x_model_outputs.past_key_values
-    # For right to left model
 
     mask_t = None
 
@@ -237,7 +236,6 @@ def decode(model, tokenizer, device, x="", z="", key_word="", constraints=None, 
             top_k_filter_3d(y_logits_t / args.output_lgt_temp, args.topk, extra_mask=x_mask, bad_mask=None),
             y_logits_ / args.input_lgt_temp)
 
-        
             # Attack Loss
         soft_forward_y_ = (y_logits_.detach() / 0.001 - y_logits_).detach() + y_logits_
         if args.fp16:
@@ -253,7 +251,6 @@ def decode(model, tokenizer, device, x="", z="", key_word="", constraints=None, 
         ed = xyz_target_logits.shape[1] - 1
         xyz_target_logits = xyz_target_logits.view(-1, xyz_target_logits.shape[-1])
         target_logits = torch.cat([xyz_target_logits[bi * lg + st:bi * lg + ed, :] for bi in range(bz)], dim=0)
-        # print(target_logits.shape)
         c_loss_1 = torch.nn.CrossEntropyLoss(reduction='none')(
             target_logits,
             target_t.view(-1))
@@ -340,14 +337,8 @@ def decode(model, tokenizer, device, x="", z="", key_word="", constraints=None, 
     text_post = text
     decoded_text = []
     for bi in range(args.batch_size):
-        # if "Llama" not in args.pretrained_model:
-        #     prompt = conv_template_user + x + " " + text_post[bi] + control + conv_template_ai
-        # else:
         prompt = x + " " + text_post[bi] + control
-        # print(prompt)
         input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
-        # print(input_ids.shape)
-        # print(f"\n Output of the model:\n")
         output_ids  = model.generate(inputs=input_ids, temperature=0.7, max_length = 512, pad_token_id=tokenizer.pad_token_id, do_sample=True, top_k=args.topk)
         output_ids = output_ids[:, input_ids.shape[1]:]
         text_dec = tokenizer.decode(output_ids[0], skip_special_tokens=True)
@@ -355,9 +346,6 @@ def decode(model, tokenizer, device, x="", z="", key_word="", constraints=None, 
     
     last_rank_loss = model(input_ids=last_text_ids, labels=last_text_ids).loss
     last_rank_loss = last_rank_loss.detach().clone().data.cpu().numpy()
-    # text_post = post_process(last_text_ids, model, args.max_length, args.length, tokenizer, device)
-    # text_post_ids = model.generate(inputs=last_text_ids, temperature=0.7, max_length = args.max_length, pad_token_id=tokenizer.pad_token_id, do_sample=True, top_k=args.topk)
-    # text_post = tokenizer.decode(text_post_ids[0], skip_special_tokens=True)
     ppl_last = np.exp(last_rank_loss)
 
     prompt_with_adv = [x + " " + t for t in text_post]
