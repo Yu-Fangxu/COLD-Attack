@@ -22,7 +22,7 @@ CUDA_VISIBLE_DEVICES=3 python3 cold_decoding.py  \
 	--verbose \
     --straight-through  \
 	--large-noise-iters 50,200,500,1500\
-	--large_gs_std  1.0,0.5,0.1,0.01  \
+	--large_gs_std  0.1,0.05,0.01,0.001  \
 	--stepsize-ratio 1  \
     --batch-size 8 \
     --print-every 1000 \
