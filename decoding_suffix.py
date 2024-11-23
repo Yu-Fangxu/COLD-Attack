@@ -25,6 +25,14 @@ def decode(model, tokenizer, device, x="", z="", constraints=None, args=None, sy
     z: optimization target  (original ending in counterfactual task)
     constraints: (constraint set in lexical constrained task)
     '''
+
+    user_prompt_suffix = None
+    if sys_prompt is not None and '<<SYS>>' in sys_prompt:
+        user_prompt_suffix = ' [/INST]\n'
+        user_prompt_suffix_t = tokenizer.encode(user_prompt_suffix, add_special_tokens=False)
+        user_prompt_suffix_t = torch.tensor(user_prompt_suffix_t, device=device, dtype=torch.long)
+        user_prompt_suffix_onehot = one_hot(user_prompt_suffix_t, dimension=tokenizer.vocab_size)
+
     model.eval()
     words = ['sorry', 'apologetic', 'regretful',
               'unethical', 'immoral', 'dishonest',
@@ -206,9 +214,10 @@ def decode(model, tokenizer, device, x="", z="", constraints=None, args=None, sy
         soft_forward_y_ = (y_logits_.detach() / 0.001 - y_logits_).detach() + y_logits_
         if args.fp16:
             with torch.autocast(device_type="cuda", dtype=torch.float16):
-                xyz_logits, xy_length = soft_forward_xyz(model, soft_forward_x, soft_forward_y_, z_onehot)
+                xyz_logits, xy_length = soft_forward_xyz(model, soft_forward_x, soft_forward_y_, z_onehot, user_prompt_suffix_onehot)
         else:
-            xyz_logits, xy_length = soft_forward_xyz(model, soft_forward_x, soft_forward_y_, z_onehot)
+            xyz_logits, xy_length = soft_forward_xyz(model, soft_forward_x, soft_forward_y_, z_onehot, user_prompt_suffix_onehot)
+        # import ipdb; ipdb.set_trace()
 
         # Reshaping
         bz = args.batch_size
@@ -241,12 +250,16 @@ def decode(model, tokenizer, device, x="", z="", constraints=None, args=None, sy
                 model, y_logits_, args.topk, soft_forward_x, x_model_past, tokenizer, extra_mask=None, bad_mask=None)
             text_post = text
             for bi in range(args.batch_size):
-                prompt = x + " " + text_post[bi]
+                prompt = sys_prompt + x + " " + text_post[bi] + user_prompt_suffix
                 input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
-                print(f"\n Output of the model:\n")
-                output_ids  = model.generate(inputs=input_ids, temperature=0.7, max_length = 512, do_sample=True, top_k=args.topk)
-                
-                print(tokenizer.decode(output_ids[0], skip_special_tokens=True))
+                output_ids  = model.generate(
+                    inputs=input_ids, temperature=0.7, max_length = 512, do_sample=True, top_k=args.topk)
+                print('\n===== prompt')
+                print(prompt)
+                print("\n----- output")
+                print(tokenizer.decode(
+                    output_ids[0][input_ids.shape[-1]:], skip_special_tokens=True))
+                print('-----')
                 print(
                     "%d, loss: %.4f,flu_loss: %.4f, c_loss_1: %.4f, c_loss_2: %.4f, lr: %.4f, |%s|" % (
                         iter + 1, loss.item(), flu_loss[bi].item(), c_loss_1[bi].item(), c_loss_2[bi].item(), last_lr, text_post[bi]))
@@ -282,7 +295,7 @@ def decode(model, tokenizer, device, x="", z="", constraints=None, args=None, sy
     text_post = text
     decoded_text = []
     for bi in range(args.batch_size):
-        prompt = x + " " + text_post[bi]
+        prompt = x + " " + text_post[bi] + user_prompt_suffix
 
         input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
         output_ids  = model.generate(inputs=input_ids, temperature=0.7, max_length = 512, pad_token_id=tokenizer.pad_token_id, do_sample=True, top_k=args.topk)
@@ -295,6 +308,6 @@ def decode(model, tokenizer, device, x="", z="", constraints=None, args=None, sy
 
     ppl_last = np.exp(last_rank_loss)
 
-    prompt_with_adv = [x + " " + t for t in text_post]
+    prompt_with_adv = [sys_prompt + x + " " + t + user_prompt_suffix for t in text_post]
     
     return ppl_last, text, text_post, decoded_text, prompt_with_adv
