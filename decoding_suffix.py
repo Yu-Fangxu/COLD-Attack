@@ -295,7 +295,7 @@ def decode(model, tokenizer, device, x="", z="", constraints=None, args=None, sy
     text_post = text
     decoded_text = []
     for bi in range(args.batch_size):
-        prompt = x + " " + text_post[bi] + user_prompt_suffix
+        prompt = sys_prompt + x + " " + text_post[bi] + user_prompt_suffix
 
         input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
         output_ids  = model.generate(inputs=input_ids, temperature=0.7, max_length = 512, pad_token_id=tokenizer.pad_token_id, do_sample=True, top_k=args.topk)
